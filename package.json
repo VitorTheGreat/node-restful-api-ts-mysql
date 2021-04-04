@@ -1,7 +1,7 @@
 {
-  "name": "node-rest-api",
+  "name": "node-rest-api-mysql",
   "version": "0.0.0",
-  "description": "Node REST API w/ Typescript - mysql",
+  "description": "Node REST API w/ Typescript - MySQL",
   "main": "src/server.ts",
   "scripts": {
     "build": "rm -rf build/ && prettier --write src/ && tsc"
