@@ -2,21 +2,21 @@
   "development": {
     "username": "superuser",
     "password": "rosevile",
-    "database": "supercoolddb",
+    "database": "supercooldb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "superuser",
     "password": "rosevile",
-    "database": "supercoolddb",
+    "database": "supercooldb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "superuser",
     "password": "rosevile",
-    "database": "supercoolddb",
+    "database": "supercooldb",
     "host": "localhost",
     "dialect": "mysql"
   }
