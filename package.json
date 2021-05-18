@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Node REST API w/ Typescript - MySQL",
   "main": "src/server.ts",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "build": "rm -rf build/ && prettier --write src/ && tsc",
     "dev": "nodemon src/server.ts"
