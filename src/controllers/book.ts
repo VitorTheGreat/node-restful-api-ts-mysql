@@ -1,8 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import logging from "../config/logging";
+import Validator from 'fastest-validator';
 const models = require('../models')
 
 const NAMESPACE = "Books";
+
+const validateFields = (fields: object) => {
+
+  const v = new Validator();
+
+  const schema = {
+    author: { type: "string", max: "30", optional: true, nullable: true  },
+    title: { type: "string", max: "30", optional: true, nullable: true  }
+  }
+
+  return v.validate(fields, schema)
+}
 
 const createBook = (req: Request, res: Response, next: NextFunction) => {
   logging.info(NAMESPACE, 'Creating Book')
@@ -13,6 +26,19 @@ const createBook = (req: Request, res: Response, next: NextFunction) => {
     author,
     title
   };
+
+  const validationResponse = validateFields(book)
+
+  console.log('validationResponse', validationResponse)
+
+  if (validationResponse !== true) { //? The validator is not totally boolean, when not passed it returns a json about the error
+
+    return res.status(400).json({
+      message: "Validation Error",
+      error: validationResponse
+    })
+
+  }
 
   models.Book.create(book)
     .then((result: any) => res.status(201).json({
@@ -38,8 +64,8 @@ const getById = (req: Request, res: Response, next: NextFunction) => {
 
   models.Book.findByPk(id)
     .then((result: any) => {
-      if(!result) {
-        res.status(404).json({message: "Book not found"})
+      if (!result) {
+        res.status(404).json({ message: "Book not found" })
       }
       res.status(200).json(result)
     })
@@ -81,6 +107,19 @@ const updateBook = (req: Request, res: Response, next: NextFunction) => {
     author,
     title
   };
+
+  const validationResponse = validateFields(updatedInfo)
+
+  console.log('validationResponse', validationResponse)
+
+  if (validationResponse !== true) { //? The validator is not totally boolean, when not passed it returns a json about the error
+
+    return res.status(400).json({
+      message: "Validation Error",
+      error: validationResponse
+    })
+
+  }
 
   models.Book.update(updatedInfo, { where: { id } })
     .then((result: any) => res.status(200).json({ result })) //? the result here, returns a boolean value!
