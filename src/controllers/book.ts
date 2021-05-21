@@ -29,8 +29,6 @@ const createBook = (req: Request, res: Response, next: NextFunction) => {
 
   const validationResponse = validateFields(book)
 
-  console.log('validationResponse', validationResponse)
-
   if (validationResponse !== true) { //? The validator is not totally boolean, when not passed it returns a json about the error
 
     return res.status(400).json({
@@ -109,8 +107,6 @@ const updateBook = (req: Request, res: Response, next: NextFunction) => {
   };
 
   const validationResponse = validateFields(updatedInfo)
-
-  console.log('validationResponse', validationResponse)
 
   if (validationResponse !== true) { //? The validator is not totally boolean, when not passed it returns a json about the error
 

@@ -6,6 +6,7 @@ import config from "./config/envConfig";
 
 //import Routes
 import bookRoutes from "./routes/book";
+import userRoutes from "./routes/user"
 
 const NAMESPACE = "Server";
 const router = express();
@@ -49,6 +50,7 @@ router.use((req, res, next) => {
 
 //Routes
 router.use("/api/books", bookRoutes);
+router.use("/api/user", userRoutes);
 
 // Error Handling
 router.use((req, res, next) => {
