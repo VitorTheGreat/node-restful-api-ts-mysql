@@ -5,11 +5,11 @@ import logging from "./config/logging";
 import config from "./config/envConfig";
 
 //this middleware can be used to each route or used to all routes. SEE ROUTES --->
-import authMiddleware from './middleware/check-auth'
+import authMiddleware from "./middleware/check-auth";
 
 //import Routes
 import bookRoutes from "./routes/book";
-import userRoutes from "./routes/user"
+import userRoutes from "./routes/user";
 
 const NAMESPACE = "Server";
 const router = express();

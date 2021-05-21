@@ -5,13 +5,13 @@ import { Connect, Query } from "../config/mysql";
 const NAMESPACE = "Books";
 
 const createBook = (req: Request, res: Response, next: NextFunction) => {
-  logging.info(NAMESPACE, 'Creating Book')
+  logging.info(NAMESPACE, "Creating Book");
 
-  let { author, title } = req.body
+  let { author, title } = req.body;
 
   let book = {
     author,
-    title
+    title,
   };
 
   let query = `INSERT INTO books (author, title) VALUES ("${author}", "${title}")`;
@@ -19,64 +19,62 @@ const createBook = (req: Request, res: Response, next: NextFunction) => {
   Connect()
     .then((connection) => {
       Query(connection, query)
-        .then(result => {
+        .then((result) => {
           return res.status(200).json({
-            result
-          })
+            result,
+          });
         })
-        .catch(error => {
-          logging.error(NAMESPACE, error.message, error)
+        .catch((error) => {
+          logging.error(NAMESPACE, error.message, error);
 
           return res.status(500).json({
             message: error.message,
-            error
-          })
+            error,
+          });
         })
-        .finally(() => connection.end())
+        .finally(() => connection.end());
     })
-    .catch(error => {
-      logging.error(NAMESPACE, error.message, error)
+    .catch((error) => {
+      logging.error(NAMESPACE, error.message, error);
 
       return res.status(500).json({
         message: error.message,
-        error
-      })
-    })
-
-}
+        error,
+      });
+    });
+};
 
 const getAllBooks = (req: Request, res: Response, next: NextFunction) => {
   logging.info(NAMESPACE, `Getting all Books`);
 
-  let query = 'SELECT * FROM books'
+  let query = "SELECT * FROM books";
 
   Connect()
     .then((connection) => {
       Query(connection, query)
-        .then(results => {
+        .then((results) => {
           return res.status(200).json({
-            results
-          })
+            results,
+          });
         })
-        .catch(error => {
-          logging.error(NAMESPACE, error.message, error)
+        .catch((error) => {
+          logging.error(NAMESPACE, error.message, error);
 
           return res.status(500).json({
             message: error.message,
-            error
-          })
+            error,
+          });
         })
-        .finally(() => connection.end())
+        .finally(() => connection.end());
     })
-    .catch(error => {
-      logging.error(NAMESPACE, error.message, error)
+    .catch((error) => {
+      logging.error(NAMESPACE, error.message, error);
 
       return res.status(500).json({
         message: error.message,
-        error
-      })
-    })
-
+        error,
+      });
+    });
 };
 
 export default { getAllBooks, createBook };

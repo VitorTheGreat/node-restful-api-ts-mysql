@@ -1,5 +1,5 @@
 declare module Express {
-    export interface Request {
-        userData: any;
-    }
+  export interface Request {
+    userData: any;
+  }
 }

@@ -12,9 +12,9 @@ const MYSQL = {
   host: MYSQL_HOST,
   database: MYSQL_DATABASE,
   user: MYSQL_USER,
-  password: MYSQL_PASSWORD
-}
-// /- Database 
+  password: MYSQL_PASSWORD,
+};
+// /- Database
 
 //Server
 const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME;
@@ -27,17 +27,17 @@ const SERVER = {
 // /- Server
 
 //JWT
-const JWT_KEY = process.env.JWT_KEY || ""
+const JWT_KEY = process.env.JWT_KEY || "";
 
 const JWT = {
-  key: JWT_KEY
-}
+  key: JWT_KEY,
+};
 // /- JWT
 
 const config = {
   mysql: MYSQL,
   server: SERVER,
-  jwtoken: JWT
+  jwtoken: JWT,
 };
 
 export default config;
