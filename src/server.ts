@@ -4,6 +4,9 @@ import bodyParser from "body-parser";
 import logging from "./config/logging";
 import config from "./config/envConfig";
 
+//this middleware can be used to each route or used to all routes. SEE ROUTES --->
+import authMiddleware from './middleware/check-auth'
+
 //import Routes
 import bookRoutes from "./routes/book";
 import userRoutes from "./routes/user"
@@ -49,7 +52,8 @@ router.use((req, res, next) => {
 });
 
 //Routes
-router.use("/api/books", bookRoutes);
+// I chose to use it with all routes here to protect everything
+router.use("/api/books", authMiddleware.checkAuth, bookRoutes);
 router.use("/api/user", userRoutes);
 
 // Error Handling

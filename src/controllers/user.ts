@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import logging from "../config/logging";
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import config from '../config/envConfig';
 import Validator from 'fastest-validator';
 
 const models = require('../models')
@@ -111,7 +112,7 @@ const loginUser = (req: Request, res: Response, next: NextFunction) => {
                         const token = jwt.sign({
                             email: user.email,
                             userId: user.id
-                        }, 'secret', (err: any, token: any) => {
+                        }, config.jwtoken.key, (err: any, token: any) => {
                             res.status(200).json({
                                 message: "Authentication successful!",
                                 token
