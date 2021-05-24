@@ -118,6 +118,7 @@ const loginUser = (req: Request, res: Response, next: NextFunction) => {
                     userId: user.id,
                   },
                   config.jwtoken.key,
+                  { expiresIn: '23h' },
                   (err: any, token: any) => {
                     res.status(200).json({
                       message: "Authentication successful!",
